@@ -13,21 +13,21 @@ namespace TechiesRage.Drawings
     {
         public static void Drawing_OnDraw(EventArgs args)
         {
-            //foreach (var C in GetCamps)
+            //foreach (var C in Core.Config.GetCamps)
             //{
             //    Drawing.DrawText("Camp " + C.Id, "Arial", Drawing.WorldToScreen(C.TablePos), new Vector2(20, 20), Color.Red, FontFlags.Italic);
             //    Drawing.DrawCircle(Drawing.WorldToScreen(C.StackPos), 10, 10, Color.Red);
             //    Drawing.DrawCircle(Drawing.WorldToScreen(C.PreparePos), 10, 10, Color.Red);
             //}
 
-            //if (DrawConsole)
+            //if (Core.Config.DrawConsole)
             //{
             //    Drawing.DrawText("POS " + Core.Config._Hero.Position.X + " " + Core.Config._Hero.Position.Y + " " + Core.Config._Hero.Position.Z,
             //        "Arial", Drawing.WorldToScreen(Core.Config._Hero.Position), new Vector2(40, 40), Color.Red, FontFlags.Italic);
             //}
             //else
             //{
-            //    Drawing.DrawText("Status " + Status + " ",
+            //    Drawing.DrawText("Status " + Core.Config.Status + " ",
             //       "Arial", Drawing.WorldToScreen(Core.Config._Hero.Position), new Vector2(40, 40), Color.Red, FontFlags.Italic);
             //}
 

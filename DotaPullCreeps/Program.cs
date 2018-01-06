@@ -23,10 +23,11 @@ namespace TechiesRage
                         var _Hero = ObjectManager.LocalHero;
                         Core.Config._Hero = _Hero;
 
+                        Printer.Print("!!!!");
                         if (_Hero.Team == Team.Radiant)
                         {
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-1411, -4284, 256),
                             //        CampPos = new Vector3(-1858, -4138, 256),
@@ -35,8 +36,8 @@ namespace TechiesRage
                             //        Id = 1,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-100, -3424, 384),
                             //        CampPos = new Vector3(-563, -3314, 256),
@@ -45,8 +46,8 @@ namespace TechiesRage
                             //        Id = 2,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(135, -4793, 384),
                             //        CampPos = new Vector3(431, -4637, 384),
@@ -55,8 +56,8 @@ namespace TechiesRage
                             //        Id = 3,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(5152, -4384, 256),
                             //        CampPos = new Vector3(4502, -4319, 256),
@@ -65,20 +66,20 @@ namespace TechiesRage
                             //        Id = 4,
                             //        PullTime = 54,
                             //    });
-                           Core.Config.GetCamps.Add(
+                            Core.Config.GetCamps.Add( // !!!
                                 new Models.Camp
                                 {
                                     TablePos = new Vector3(3168, -4320, 256),
                                     CampPos = new Vector3(3030, -4555, 256),
                                     StackPos = new Vector3(4499, -5096, 384),
                                     PreparePos = new Vector3(3432, -4656, 256),
-                                     PullPus = new Vector3(3070, -4610, 256),
-                                      RunPos = new Vector3(3447, -5884, 384),
+                                    PullPus = new Vector3(3070, -4610, 256),
+                                    RunPos = new Vector3(3447, -5884, 384),
                                     Id = 5,
                                     PullTime = 54,
-                                }); 
-                            //GetCamps.Add(
-                            //    new Camp
+                                });
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-3000, 300, 384),
                             //        CampPos = new Vector3(-2858, -126, 384),
@@ -87,8 +88,8 @@ namespace TechiesRage
                             //        Id = 6,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-5121, -239, 256),
                             //        CampPos = new Vector3(-4809, -408, 256),
@@ -97,8 +98,8 @@ namespace TechiesRage
                             //        Id = 7,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-3324, 736, 256),
                             //        CampPos = new Vector3(-3824, 766, 256),
@@ -107,8 +108,8 @@ namespace TechiesRage
                             //        Id = 8,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(567, -1908, 384),
                             //        CampPos = new Vector3(142, -1947, 384),
@@ -117,11 +118,23 @@ namespace TechiesRage
                             //        Id = 9,
                             //        PullTime = 54,
                             //    });
+                            Core.Config.GetCamps.Add(
+                         new Models.Camp
+                         {
+                             TablePos = new Vector3(-4100, 3300, 256),
+                             CampPos = new Vector3(-4331, 3706, 256),
+                             StackPos = new Vector3(-2894, 3515, 256),
+                             PreparePos = new Vector3(-4174, 3893, 256),
+                             PullPus = new Vector3(-4361, 3614, 256),
+                             RunPos = new Vector3(-5800, 3564, 384),
+                             Id = 14,
+                             PullTime = 55,
+                         });
                         }
                         else
                         {
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(1700, 3400, 384),
                             //        CampPos = new Vector3(1339, 3356, 384),
@@ -130,8 +143,8 @@ namespace TechiesRage
                             //        Id = 10,
                             //        PullTime = 54,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-352, 3070, 256),
                             //        CampPos = new Vector3(-270, 3424, 256),
@@ -140,8 +153,8 @@ namespace TechiesRage
                             //        Id = 11,
                             //        PullTime = 54,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-1184, 2208, 384),
                             //        CampPos = new Vector3(-827, 2278, 384),
@@ -150,30 +163,32 @@ namespace TechiesRage
                             //        Id = 12,
                             //        PullTime = 54,
                             //    });
+                            Core.Config.GetCamps.Add( // !!!
+                                    new Models.Camp
+                                    {
+                                        TablePos = new Vector3(-2498, 4921, 259),
+                                        CampPos = new Vector3(-2768, 4578, 256),
+                                        StackPos = new Vector3(-1923, 6042, 384),
+                                        PreparePos = new Vector3(-3215, 4534, 256),
+                                        PullPus = new Vector3(-2803, 4646, 256),
+                                        RunPos = new Vector3(-3310, 5788, 384),
+                                        Id = 13,
+                                        PullTime = 53,
+                                    });
                             Core.Config.GetCamps.Add(
-                                new Models.Camp
-                                {
-                                    TablePos = new Vector3(-2498, 4921, 259),
-                                    CampPos = new Vector3(-2768, 4578, 256),
-                                    StackPos = new Vector3(-1923, 6042, 384),
-                                    PreparePos = new Vector3(-3215, 4534, 256),
-                                     PullPus = new Vector3(-2803, 4646, 256),
-                                      RunPos = new Vector3(-3310, 5788, 384),
-                                    Id = 13,
-                                    PullTime = 53,
-                                });
-                            //GetCamps.Add(
-                            //    new Camp
-                            //    {
-                            //        TablePos = new Vector3(-4100, 3300, 256),
-                            //        CampPos = new Vector3(-4331, 3706, 256),
-                            //        StackPos = new Vector3(-2894, 3515, 256),
-                            //        PreparePos = new Vector3(-4174, 3893, 256),
-                            //        Id = 14,
-                            //        PullTime = 55,
-                            //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                         new Models.Camp
+                         {
+                             TablePos = new Vector3(-4100, 3300, 256),
+                             CampPos = new Vector3(-4331, 3706, 256),
+                             StackPos = new Vector3(-2894, 3515, 256),
+                             PreparePos = new Vector3(-4174, 3893, 256),
+                             PullPus = new Vector3(-4361, 3614, 256),
+                             RunPos = new Vector3(-5871, 3687, 384),
+                             Id = 14,
+                             PullTime = 55,
+                         });
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(4200, -400, 256),
                             //        CampPos = new Vector3(3732, -631, 256),
@@ -182,8 +197,8 @@ namespace TechiesRage
                             //        Id = 15,
                             //        PullTime = 53,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(4696, 1120, 384),
                             //        CampPos = new Vector3(4273, 791, 384),
@@ -192,8 +207,8 @@ namespace TechiesRage
                             //        Id = 16,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(-1940, 4669, 384),
                             //        CampPos = new Vector3(-1984, 4282, 256),
@@ -202,8 +217,8 @@ namespace TechiesRage
                             //        Id = 17,
                             //        PullTime = 55,
                             //    });
-                            //GetCamps.Add(
-                            //    new Camp
+                            //Core.Config.GetCamps.Add(
+                            //    new Models.Camp
                             //    {
                             //        TablePos = new Vector3(2527, 478, 384),
                             //        CampPos = new Vector3(2685, 110, 384),
@@ -213,7 +228,8 @@ namespace TechiesRage
                             //        PullTime = 54,
                             //    });
                         }
-                        
+                     
+
                         Core.MenuManager.Init();
 
                         Game.OnIngameUpdate += OnUpdate;
@@ -286,6 +302,26 @@ namespace TechiesRage
                                         }
                                     }
                                     break;
+                                case 14:
+                                    {
+                                        if (Core.Config._Hero.Team == Team.Radiant)
+                                        {
+                                            if ((_Sec >= 15.5 && _Sec <= 17) || (_Sec >= 46.5 && _Sec <= 48))
+                                            {
+                                                Core.Config._Hero.Move(Core.Config.CampToPull.PullPus);
+                                                Core.Config.Status++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if ((_Sec >= 26 && _Sec <= 28) || (_Sec >= 54.6 && _Sec <= 56.7))
+                                            {
+                                                Core.Config._Hero.Move(Core.Config.CampToPull.PullPus);
+                                                Core.Config.Status++;
+                                            }
+                                        }
+                                    }
+                                    break;
                             }
                         }
                         break;
@@ -344,11 +380,10 @@ namespace TechiesRage
 
             //if (Game.IsKeyDown(System.Windows.Input.Key.O))
             //{
-            //    DrawConsole = true;
+            //    Core.Config.DrawConsole = true;
             //}
-            //else DrawConsole = false;
+            //else Core.Config.DrawConsole = false;
         }
-        static Boolean DrawConsole = false;
 
         private static void Game_OnWndProc(WndEventArgs args)
         {

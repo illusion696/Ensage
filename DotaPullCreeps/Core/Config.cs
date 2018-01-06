@@ -16,5 +16,6 @@ namespace TechiesRage.Core
         public static int Status = 0;
         public static Models.Camp CampToPull = null;
         public static float _AttackTime = 0;
+        public static Boolean DrawConsole = false;
     }
 }
