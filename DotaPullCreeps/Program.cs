@@ -8,7 +8,7 @@ using Ensage.SDK.Helpers;
 using SharpDX;
 using System.Collections.Generic;
 
-namespace TechiesRage
+namespace PullCreeps
 {
     internal class Program
     {

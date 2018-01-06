@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TechiesRage.Core
+namespace PullCreeps.Core
 {
     public static class Config
     {
