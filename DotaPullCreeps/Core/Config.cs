@@ -1,4 +1,5 @@
 ﻿using Ensage;
+using Ensage.Common.Objects.UtilityObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace PullCreeps.Core
         public static Models.Camp CampToPull = null;
         public static float _AttackTime = 0;
         public static Boolean DrawConsole = false;
+        public static Sleeper _Sleeper = new Sleeper();
     }
 }

@@ -17,5 +17,9 @@ namespace PullCreeps.Models
         public Vector3 PullPus { get; set; }
         public Vector3 RunPos { get; set; }
         public int PullTime { get; set; }
+
+        public float BendPullTime { get; set; }
+        public float BendPullTime2 { get; set; }
+        public float MiliSubTime { get; set; }
     }
 }

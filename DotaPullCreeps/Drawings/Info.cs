@@ -1,5 +1,6 @@
 ﻿using Ensage;
 using Ensage.Common;
+using Ensage.Common.Extensions;
 using SharpDX;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace PullCreeps.Drawings
             //}
             //else
             //{
-            //    Drawing.DrawText("Status " + Core.Config.Status + " ",
+            //    Drawing.DrawText("Status " + Core.Config.Status + " " + " " + Core.Config._Hero.IsAttacking() + " " + Core.Config.ForTest,
             //       "Arial", Drawing.WorldToScreen(Core.Config._Hero.Position), new Vector2(40, 40), Color.Red, FontFlags.Italic);
             //}
 
