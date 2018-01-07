@@ -79,8 +79,8 @@
     <Compile Include="Drawings\Info.cs" />
     <Compile Include="Models\CampModel.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Printer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
