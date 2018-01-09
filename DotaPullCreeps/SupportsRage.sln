@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PullCreeps", "PullCreeps.csproj", "{73ED819E-FFB9-4520-90CD-EEC2E56A3FE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportsRage", "SupportsRage.csproj", "{73ED819E-FFB9-4520-90CD-EEC2E56A3FE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,13 +21,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2F29BDA-07D9-4A78-90FE-ED2FB458A32F}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://sapkirill.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = PullCreeps.csproj
-		SccLocalPath1 = .
 	EndGlobalSection
 EndGlobal

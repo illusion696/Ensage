@@ -1,18 +1,14 @@
 ﻿using Ensage;
 using Ensage.Common;
-using Ensage.Common.Extensions;
+using Ensage.SDK.Renderer;
 using SharpDX;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PullCreeps.Drawings
+namespace SupportsRage.Drawings
 {
     public static class Info
     {
-        public static void Drawing_OnDraw(EventArgs args)
+        public static void OnDraw(object sender, EventArgs eventArgs)
         {
             //foreach (var C in Core.Config.GetCamps)
             //{
@@ -34,25 +30,20 @@ namespace PullCreeps.Drawings
 
             if (Core.Config.DoStack)
             {
-                if (Core.MenuManager.DrawingsOnTop)
+                if (Core.Config._Menu.Drawings.DrawingsOnTop)
                 {
-                    Drawing.DrawRect(HUDInfo.GetTopPanelPosition(Core.Config._Hero) + new Vector2(0, 60),
-                        new Vector2((float)HUDInfo.GetTopPanelSizeX(Core.Config._Hero), (float)HUDInfo.GetTopPanelSizeY(Core.Config._Hero)), Color.Green);
+                    var _Temp = HUDInfo.GetTopPanelPosition(Core.Config._Hero) + new Vector2(0, 60);
+                    Core.Config._Renderer.DrawRectangle(new RectangleF(_Temp.X, _Temp.Y, (float)HUDInfo.GetTopPanelSizeX(Core.Config._Hero), (float)HUDInfo.GetTopPanelSizeY(Core.Config._Hero)), System.Drawing.Color.Green, 2);
                 }
 
-                if (Core.MenuManager.DrawingsOnHero)
+                if (Core.Config._Menu.Drawings.DrawingsOnHero)
                 {
                     String _Text = "Pulling...";
                     var _Pos = HUDInfo.GetHPbarPosition(Core.Config._Hero);
                     var _Size = new Vector2((float)HUDInfo.GetHPBarSizeX(Core.Config._Hero), (float)HUDInfo.GetHpBarSizeY(Core.Config._Hero));
-                    var _TextSize = Drawing.MeasureText(_Text, "Arial", new Vector2((float)(_Size.Y * 1.5), (float)(_Size.Y * 1.5)), FontFlags.None);
+                    var _TextSize = Core.Config._Renderer.MessureText(_Text);
                     var _TextPos = _Pos - new Vector2(_TextSize.X + 10, 5);
-                    Drawing.DrawText(
-                        _Text,
-                        _TextPos,
-                        new Vector2(_TextSize.Y, 0),
-                        Color.White,
-                        FontFlags.None);
+                    Core.Config._Renderer.DrawText(_TextPos, _Text, System.Drawing.Color.White);
                 }
             }
         }

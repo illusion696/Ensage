@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PullCreeps.Models
+namespace SupportsRage.Models
 {
     public class Camp
     {
