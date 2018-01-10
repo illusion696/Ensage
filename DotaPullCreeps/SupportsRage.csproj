@@ -85,6 +85,7 @@
     <Compile Include="Core\AbilityStorage.cs" />
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\Init.cs" />
+    <Compile Include="Core\GlimmerSaveLogic.cs" />
     <Compile Include="Core\LinkenSaveLogic.cs" />
     <Compile Include="Core\MainLogic.cs" />
     <Compile Include="Core\Menu.cs" />

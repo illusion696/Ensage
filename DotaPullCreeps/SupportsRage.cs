@@ -18,7 +18,7 @@ using Ensage.SDK.Input;
 
 namespace SupportsRage
 {
-    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.0.0", "AIO utility for Supports")]
+    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.0.1", "AIO utility for Supports")]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
@@ -50,6 +50,7 @@ namespace SupportsRage
 
                 UpdateManager.Subscribe(Core.MainLogic.OnUpdate, 100);
                 UpdateManager.Subscribe(Core.LinkenSaveLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(Core.GlimmerSaveLogic.OnUpdate, 25);
 
                 Core.Config.Log.Warn("Load completed");
             }
@@ -89,6 +90,7 @@ namespace SupportsRage
             Core.Config._Renderer.Draw -= Drawings.Info.OnDraw;
             UpdateManager.Unsubscribe(Core.MainLogic.OnUpdate);
             UpdateManager.Unsubscribe(Core.LinkenSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(Core.GlimmerSaveLogic.OnUpdate);
         }
         
     }
