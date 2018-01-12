@@ -28,7 +28,7 @@ namespace SupportsRage.Core
 
         [Item("Stack key")]
         public HotkeySelector Hotkey { get; set; }
-        public Boolean HotkeyDown;
+        public bool HotkeyDown;
         private void HotkeyPressed(MenuInputEventArgs obj)
         {
             HotkeyDown = obj.Flag == HotkeyFlags.Down;
@@ -49,16 +49,15 @@ namespace SupportsRage.Core
         [Menu("Glimmer for CUlts")]
         public GlimmerCUlts GlimmerCUlts { get; set; }
     }
-
-    [Menu("Drawings")]
+    
     public class DrawingsMenu
     {
         [Item("On Top panel")]
         [DefaultValue(true)]
-        public Boolean DrawingsOnTop { get; set; }
+        public bool DrawingsOnTop { get; set; }
         [Item("On Hero")]
         [DefaultValue(true)]
-        public Boolean DrawingsOnHero { get; set; }
+        public bool DrawingsOnHero { get; set; }
     }
     
     public class LinkenSave
@@ -124,7 +123,7 @@ namespace SupportsRage.Core
         [Item("Save key")]
         public HotkeySelector Savekey { get; set; }
 
-        public Boolean SavekeyDown { get; set; }
+        public bool SavekeyDown { get; set; }
         private void SavekeyPressed(MenuInputEventArgs obj)
         {
             SavekeyDown = obj.Flag == HotkeyFlags.Down;
@@ -185,7 +184,7 @@ namespace SupportsRage.Core
 
         [Item("Save key")]
         public HotkeySelector Savekey { get; set; }
-        public Boolean SavekeyDown;
+        public bool SavekeyDown;
         private void SavekeyPressed(MenuInputEventArgs obj)
         {
             SavekeyDown = obj.Flag == HotkeyFlags.Down;
@@ -255,7 +254,7 @@ namespace SupportsRage.Core
         [Item("Save key")]
         public HotkeySelector Savekey { get; set; }
 
-        public Boolean SavekeyDown { get; set; }
+        public bool SavekeyDown { get; set; }
         private void SavekeyPressed(MenuInputEventArgs obj)
         {
             SavekeyDown = obj.Flag == HotkeyFlags.Down;
@@ -281,7 +280,7 @@ namespace SupportsRage.Core
         [Item("Save key")]
         public HotkeySelector GlimmerForkey { get; set; }
 
-        public Boolean GlimmerForkeyDown { get; set; }
+        public bool GlimmerForkeyDown { get; set; }
         private void GlimmerForkeyPressed(MenuInputEventArgs obj)
         {
             GlimmerForkeyDown = obj.Flag == HotkeyFlags.Down;

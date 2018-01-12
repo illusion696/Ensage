@@ -240,7 +240,7 @@ namespace RubickRage.Core
             SaveFromKeys = _Names.ToArray();
             this.SaveFrom = new ImageToggler(true, SaveFromKeys);
 
-            Savekey = new HotkeySelector(Key.N, this.SavekeyPressed, HotkeyFlags.Down | HotkeyFlags.Up);
+            Savekey = new HotkeySelector(Key.L, this.SavekeyPressed, HotkeyFlags.Down | HotkeyFlags.Up);
         }
 
         public Dictionary<String, LotusSpellConfig> LotusSpellConfigs = new Dictionary<string, LotusSpellConfig>();
