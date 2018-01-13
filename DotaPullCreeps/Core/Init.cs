@@ -1,10 +1,6 @@
 ﻿using Ensage;
 using SharpDX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SupportsRage.Models;
 
 namespace SupportsRage.Core
 {
@@ -19,8 +15,8 @@ namespace SupportsRage.Core
         {
             if (Config._Hero.Team == Team.Radiant)
             {
-                Core.Config.GetCamps.Add(
-                    new Models.Camp
+                Config.GetCamps.Add(
+                    new Camp
                     {
                         TablePos = new Vector3(5152, -4384, 256),
                         CampPos = new Vector3(4502, -4319, 256),
@@ -34,8 +30,8 @@ namespace SupportsRage.Core
                         BendPullTime2 = -1,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
-                    new Models.Camp
+                Config.GetCamps.Add(
+                    new Camp
                     {
                         TablePos = new Vector3(3168, -4320, 256),
                         CampPos = new Vector3(3030, -4555, 256),
@@ -50,8 +46,8 @@ namespace SupportsRage.Core
                         MiliSubTime = (float)0.5
                     });
 
-                Core.Config.GetCamps.Add(
-                    new Models.Camp
+                Config.GetCamps.Add(
+                    new Camp
                     {
                         TablePos = new Vector3(-4100, 3300, 256),
                         CampPos = new Vector3(-4331, 3706, 256),
@@ -63,13 +59,13 @@ namespace SupportsRage.Core
                         PullTime = 55,
                         BendPullTime = 23,
                         BendPullTime2 = 53,
-                        MiliSubTime = (float)0.5,
+                        MiliSubTime = (float)0.5
                     });
             }
             else
             {
-                Core.Config.GetCamps.Add(
-                    new Models.Camp
+                Config.GetCamps.Add(
+                    new Camp
                     {
                         TablePos = new Vector3(-2498, 4921, 259),
                         CampPos = new Vector3(-2768, 4578, 256),
@@ -83,8 +79,8 @@ namespace SupportsRage.Core
                         BendPullTime2 = 49,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
-                    new Models.Camp
+                Config.GetCamps.Add(
+                    new Camp
                     {
                         TablePos = new Vector3(-4100, 3300, 256),
                         CampPos = new Vector3(-4331, 3706, 256),
@@ -98,8 +94,8 @@ namespace SupportsRage.Core
                         BendPullTime2 = 2,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
-                   new Models.Camp
+                Config.GetCamps.Add(
+                   new Camp
                    {
                        TablePos = new Vector3(5152, -4384, 256),
                        CampPos = new Vector3(4502, -4319, 256),

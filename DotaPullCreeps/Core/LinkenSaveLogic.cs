@@ -1,12 +1,8 @@
-﻿using Ensage;
+﻿using System.Linq;
+using Ensage;
+using Ensage.Common.Enums;
 using Ensage.Common.Extensions;
-using Ensage.Common.Objects.UtilityObjects;
 using Ensage.SDK.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SupportsRage.Core
 {
@@ -15,28 +11,28 @@ namespace SupportsRage.Core
         public static Item _Linken;
         public static void OnUpdate()
         {
-            if (Core.Config._Menu.LinkenSave.SavekeyDown)
+            if (Config._Menu.LinkenSave.SavekeyDown || Config._Menu.LinkenSave.ToggleEnabled)
             {
-                _Linken = Core.Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_sphere);
+                _Linken = Config._Hero.GetItemById(ItemId.item_sphere);
                 if (_Linken != null && _Linken.CanBeCasted())
                 {
-                    foreach (var v in EntityManager<Hero>.Entities.Where(x => x.Team != Core.Config._Hero.Team && x.IsAlive && x.IsVisible))
+                    foreach (var v in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsAlive && x.IsVisible))
                     {
                         var anyAbility = v.Spellbook.Spells.FirstOrDefault(x => x.IsInAbilityPhase);
                         if (anyAbility != null)
                         {
                             var _AId = anyAbility.Name;
-                            if (Core.Config._Menu.LinkenSave.SaveFromKeys.Contains(_AId))
+                            if (Config._Menu.LinkenSave.SaveFromKeys.Contains(_AId))
                             {
-                                if (Core.Config._Menu.LinkenSave.SaveFrom[_AId])
+                                if (Config._Menu.LinkenSave.SaveFrom[_AId])
                                 {
-                                    var _Target = EntityManager<Hero>.Entities.Where(x => x.Team == Core.Config._Hero.Team && x.IsAlive).OrderBy(x => v.FindRelativeAngle(x.Position)).FirstOrDefault();
+                                    var _Target = EntityManager<Hero>.Entities.Where(x => x.Team == Config._Hero.Team && x.IsAlive && x.Distance2D(v) <= anyAbility.CastRange).OrderBy(x => v.FindRelativeAngle(x.Position)).FirstOrDefault();
 
                                     if (_Target != null)
                                     {
-                                        if (_Linken.CastRange < _Target.Distance2D(Core.Config._Hero.Position))
+                                        if (_Linken.CastRange < _Target.Distance2D(Config._Hero.Position))
                                         {
-                                            var _Item2 = Core.Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_blink);
+                                            var _Item2 = Config._Hero.GetItemById(ItemId.item_blink);
                                             if (_Item2 != null && _Item2.CanBeCasted())
                                             {
                                                 _Item2.UseAbility(_Target.Position);

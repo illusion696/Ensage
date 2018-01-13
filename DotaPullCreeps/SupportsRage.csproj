@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Ensage.Common, Version=1.2.8.5, Culture=neutral, PublicKeyToken=9849de8727708dde, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\Games\Ensage\References\Ensage.Common.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Ensage.Common.DLL</HintPath>
     </Reference>
     <Reference Include="Ensage.SDK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2a0bb906a796e43b, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>

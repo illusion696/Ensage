@@ -1,24 +1,18 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using Ensage;
-using Ensage.Common;
-using Ensage.Common.Extensions;
-using SharpDX;
+using Ensage.SDK.Helpers;
+using Ensage.SDK.Input;
+using Ensage.SDK.Menu;
 using Ensage.SDK.Service;
 using Ensage.SDK.Service.Metadata;
-using NLog;
-using Ensage.SDK.Helpers;
-using Ensage.SDK.Menu;
-using Ensage.SDK.Renderer;
-using Ensage.SDK.Menu.ValueBinding;
-using Ensage.SDK.Menu.Items;
-using Ensage.SDK.Input;
+using SupportsRage.Core;
+using SupportsRage.Drawings;
+using Config = SupportsRage.Core.Config;
 
 namespace SupportsRage
 {
-    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.2.0", "AIO utility for Supports")]
+    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.3.0", "AIO utility for Supports")]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
@@ -28,37 +22,37 @@ namespace SupportsRage
         [ImportingConstructor]
         public SupportsRage([Import] IServiceContext _Context, [Import] Lazy<MenuManager> _MenuManager)
         {
-            Core.Config._Hero = (Hero)_Context.Owner;
+            Config._Hero = (Hero)_Context.Owner;
             this._MenuManager = _MenuManager;
             this._Context = _Context;
-            Core.Config._Renderer = _Context.Renderer;
-            this._Input = _Context.Input;
+            Config._Renderer = _Context.Renderer;
+            _Input = _Context.Input;
         }
 
         protected override void OnActivate()
         {
             try
             {
-                 Core.Config._Menu = new Core.Menu(Core.Config.Log);
-                _Context.MenuManager.RegisterMenu(Core.Config._Menu);
+                 Config._Menu = new Menu();
+                _Context.MenuManager.RegisterMenu(Config._Menu);
                 _Input.KeyDown += Input_KeyDown;
                 _Input.MouseClick += Input_MouseClick;
 
-                Core.Init.Prepare();
+                Init.Prepare();
 
-                Core.Config._Renderer.Draw += Drawings.Info.OnDraw;
+                Config._Renderer.Draw += Info.OnDraw;
 
-                UpdateManager.Subscribe(Core.MainLogic.OnUpdate, 100);
-                UpdateManager.Subscribe(Core.LinkenSaveLogic.OnUpdate, 25);
-                UpdateManager.Subscribe(Core.GlimmerSaveLogic.OnUpdate, 25);
-                UpdateManager.Subscribe(Core.LotusSaveLogic.OnUpdate, 25);
-                UpdateManager.Subscribe(Core.GlimmerCUltLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(MainLogic.OnUpdate, 100);
+                UpdateManager.Subscribe(LinkenSaveLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(LotusSaveLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(GlimmerCUltLogic.OnUpdate, 25);
 
-                Core.Config.Log.Warn("Load completed");
+                Config.Log.Warn("Load completed");
             }
             catch (Exception ex)
             {
-                Core.Config.Log.Error(ex.ToString());
+                Config.Log.Error(ex.ToString());
             }
 
             //this.inventoryManager.Attach(this);
@@ -79,22 +73,22 @@ namespace SupportsRage
             //Log.Warn(e.Key);
             if (e.Buttons ==  MouseButtons.RightDown)
             {
-                Core.Config.DoStack = false;
-                Core.Config.Status = 0;
+                Config.DoStack = false;
+                Config.Status = 0;
             }
         }
 
         protected override void OnDeactivate()
         {
-            this._MenuManager.Value.DeregisterMenu(Core.Config._Menu);
+            _MenuManager.Value.DeregisterMenu(Config._Menu);
             _Input.KeyDown -= Input_KeyDown;
             _Input.MouseClick -= Input_MouseClick;
-            Core.Config._Renderer.Draw -= Drawings.Info.OnDraw;
-            UpdateManager.Unsubscribe(Core.MainLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.LinkenSaveLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.GlimmerSaveLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.LotusSaveLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.GlimmerCUltLogic.OnUpdate);
+            Config._Renderer.Draw -= Info.OnDraw;
+            UpdateManager.Unsubscribe(MainLogic.OnUpdate);
+            UpdateManager.Unsubscribe(LinkenSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(GlimmerSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(LotusSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(GlimmerCUltLogic.OnUpdate);
         }
         
     }
