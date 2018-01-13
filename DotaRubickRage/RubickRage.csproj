@@ -83,7 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AbilityStorage.cs" />
+    <Compile Include="Core\ComboLogic.cs" />
     <Compile Include="Core\Config.cs" />
+    <Compile Include="Core\GlimmerCUltLogic.cs" />
     <Compile Include="Core\GlimmerSaveLogic.cs" />
     <Compile Include="Core\Init.cs" />
     <Compile Include="Core\LinkenSaveLogic.cs" />

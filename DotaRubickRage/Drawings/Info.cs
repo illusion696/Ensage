@@ -1,11 +1,6 @@
-﻿using Ensage;
-using Ensage.Common;
+﻿using Ensage.Common;
 using SharpDX;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubickRage.Drawings
 {
@@ -52,7 +47,6 @@ namespace RubickRage.Drawings
 
             String _Text = "Status " + Core.LotusLogic._Status;
             var _Pos = HUDInfo.GetHPbarPosition(Core.Config._Hero);
-            var _Size = new Vector2((float)HUDInfo.GetHPBarSizeX(Core.Config._Hero), (float)HUDInfo.GetHpBarSizeY(Core.Config._Hero));
             var _TextSize = Core.Config._Renderer.MessureText(_Text);
             var _TextPos = _Pos - new Vector2(_TextSize.X + 10, 5);
             Core.Config._Renderer.DrawText(_TextPos, _Text, System.Drawing.Color.White);

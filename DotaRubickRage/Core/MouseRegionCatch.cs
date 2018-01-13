@@ -1,10 +1,6 @@
 ﻿using Ensage.SDK.Input;
 using SharpDX;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubickRage.Core
 {
@@ -15,11 +11,11 @@ namespace RubickRage.Core
             //Log.Warn(e.Key);
             if (e.Buttons == MouseButtons.RightDown)
             {
-                Core.Config.DoStack = false;
-                Core.Config.Status = 0;
+                Config.DoStack = false;
+                Config.Status = 0;
             }
 
-            var _Menu = Core.Config._Menu;
+            var _Menu = Config._Menu;
 
             if (e.Buttons == MouseButtons.LeftUp && _Menu.Drawings.DrawingsLotusCombo)
             {

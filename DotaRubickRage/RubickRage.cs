@@ -1,26 +1,17 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using Ensage;
-using Ensage.Common;
-using Ensage.Common.Extensions;
-using SharpDX;
 using Ensage.SDK.Service;
 using Ensage.SDK.Service.Metadata;
-using NLog;
 using Ensage.SDK.Helpers;
 using Ensage.SDK.Menu;
-using Ensage.SDK.Renderer;
-using Ensage.SDK.Menu.ValueBinding;
-using Ensage.SDK.Menu.Items;
 using Ensage.SDK.Input;
-using Ensage.SDK.Menu.Entries;
 using Ensage.SDK.Handlers;
+using RubickRage.Core;
 
 namespace RubickRage
 {
-    [ExportPlugin("Rubic Rage", StartupMode.Auto, "SirLimon", "0.5.0.0", "Rubic smart assembly")]
+    [ExportPlugin("Rubic Rage", StartupMode.Auto, "SirLimon", "1.0.0.0", "Rubic smart assembly", 500, HeroId.npc_dota_hero_rubick)]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
@@ -34,28 +25,33 @@ namespace RubickRage
             this._MenuManager = _MenuManager;
             this._Context = _Context;
             Core.Config._Renderer = _Context.Renderer;
-            this._Input = _Context.Input;
+            _Input = _Context.Input;
+            Core.Config._TargetSelector = _Context.TargetSelector;
+
+            Core.Config._QSpell = _Context.AbilityFactory.GetAbility<Ensage.SDK.Abilities.npc_dota_hero_rubick.rubick_telekinesis>();
+            Core.Config._WSpell = _Context.AbilityFactory.GetAbility<Ensage.SDK.Abilities.npc_dota_hero_rubick.rubick_fade_bolt>();
         }
 
         protected override void OnActivate()
         {
             try
             {
-                Core.Config._Menu = new Core.Menu(Core.Config.Log);
-                var _X =_Context.MenuManager.RegisterMenu(Core.Config._Menu);
+                Core.Config._Menu = new Menu();
+                _Context.MenuManager.RegisterMenu(Core.Config._Menu);
 
                 _Input.KeyDown += Input_KeyDown;
-                _Input.MouseClick += Core.MouseRegionCatch.Input_MouseClick;
+                _Input.MouseClick += MouseRegionCatch.Input_MouseClick;
 
-                Core.Init.Prepare();
+                Init.Prepare();
 
                 Core.Config._Renderer.Draw += Drawings.Info.OnDraw;
                 Core.Config._Renderer.Draw += Drawings.SpellConfigPanel.OnDraw;
 
-                UpdateManager.Subscribe(Core.MainLogic.OnUpdate, 100);
-                UpdateManager.Subscribe(Core.LinkenSaveLogic.OnUpdate, 25);
-                UpdateManager.Subscribe(Core.GlimmerSaveLogic.OnUpdate, 25);
-                Core.Config.comboTask = new TaskHandler(Core.LotusLogic.OnUpdateTask, true);
+                UpdateManager.Subscribe(MainLogic.OnUpdate, 100);
+                UpdateManager.Subscribe(LinkenSaveLogic.OnUpdate, 25);
+                UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
+                Core.Config._ComboTask = new TaskHandler(LotusLogic.OnUpdateTask, true);
+                Core.Config._ComboMainTask = new TaskHandler(ComboLogic.Combo, true);
 
                 Core.Config.Log.Warn("Load completed");
             }
@@ -80,13 +76,13 @@ namespace RubickRage
 
         protected override void OnDeactivate()
         {
-            this._MenuManager.Value.DeregisterMenu(Core.Config._Menu);
+            _MenuManager.Value.DeregisterMenu(Core.Config._Menu);
             _Input.KeyDown -= Input_KeyDown;
-            _Input.MouseClick -= Core.MouseRegionCatch.Input_MouseClick;
+            _Input.MouseClick -= MouseRegionCatch.Input_MouseClick;
             Core.Config._Renderer.Draw -= Drawings.Info.OnDraw;
-            UpdateManager.Unsubscribe(Core.MainLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.LinkenSaveLogic.OnUpdate);
-            UpdateManager.Unsubscribe(Core.GlimmerSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(MainLogic.OnUpdate);
+            UpdateManager.Unsubscribe(LinkenSaveLogic.OnUpdate);
+            UpdateManager.Unsubscribe(GlimmerSaveLogic.OnUpdate);
         }
 
     }

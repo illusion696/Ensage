@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubickRage.Drawings
 {
@@ -38,7 +34,7 @@ namespace RubickRage.Drawings
                 var _Renderer = Core.Config._Renderer;
                 var _PanelHeight = _Menu.LotusCombo.LotusSpellConfigs.Count * 35 + 5;
 
-                Drawings.TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value, _Menu.Drawings.LotusPanelY.Value, 300, _PanelHeight),
+                TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value, _Menu.Drawings.LotusPanelY.Value, 300, _PanelHeight),
                     System.Drawing.Color.FromArgb(187, 187, 187, 187),
                     System.Drawing.Color.FromArgb(100, 80, 80, 80), 2);
 
@@ -47,17 +43,17 @@ namespace RubickRage.Drawings
                 {
                     _Renderer.DrawTexture(_SC.Key, new SharpDX.RectangleF(_Menu.Drawings.LotusPanelX.Value + 5, _Menu.Drawings.LotusPanelY.Value + 5 + _Pad, 30, 30));
                     _Renderer.DrawText(new SharpDX.Vector2(_Menu.Drawings.LotusPanelX.Value + 40, _Menu.Drawings.LotusPanelY.Value + 9 + _Pad), "Steal", System.Drawing.Color.White);
-                    Drawings.TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 78, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
+                    TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 78, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
                         System.Drawing.Color.FromArgb(187, 187, 187, 187),
-                       _SC.Value.Steal ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0), 1);
+                       _SC.Value.Steal ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0));
                     _Renderer.DrawText(new SharpDX.Vector2(_Menu.Drawings.LotusPanelX.Value + 106, _Menu.Drawings.LotusPanelY.Value + 9 + _Pad), "Use", System.Drawing.Color.White);
-                    Drawings.TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 140, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
+                    TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 140, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
                         System.Drawing.Color.FromArgb(187, 187, 187, 187),
-                       _SC.Value.ForceUse ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0), 1);
+                       _SC.Value.ForceUse ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0));
                     _Renderer.DrawText(new SharpDX.Vector2(_Menu.Drawings.LotusPanelX.Value + 167, _Menu.Drawings.LotusPanelY.Value + 9 + _Pad), "Another target", System.Drawing.Color.White);
-                    Drawings.TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 265, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
+                    TempDrawExt.DrawFilledRectangle(new System.Drawing.RectangleF(_Menu.Drawings.LotusPanelX.Value + 265, _Menu.Drawings.LotusPanelY.Value + 7 + _Pad, 25, 25),
                       System.Drawing.Color.FromArgb(187, 187, 187, 187),
-                      _SC.Value.AnotherTarger ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0), 1);
+                      _SC.Value.AnotherTarger ? System.Drawing.Color.FromArgb(200, 121, 196, 71) : System.Drawing.Color.FromArgb(200, 200, 0, 0));
 
                     _Pad += 35;
                 }

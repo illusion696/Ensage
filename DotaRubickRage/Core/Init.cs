@@ -1,10 +1,5 @@
 ﻿using Ensage;
 using SharpDX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubickRage.Core
 {
@@ -19,7 +14,7 @@ namespace RubickRage.Core
         {
             if (Config._Hero.Team == Team.Radiant)
             {
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                     new Models.Camp
                     {
                         TablePos = new Vector3(5152, -4384, 256),
@@ -34,7 +29,7 @@ namespace RubickRage.Core
                         BendPullTime2 = -1,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                     new Models.Camp
                     {
                         TablePos = new Vector3(3168, -4320, 256),
@@ -50,7 +45,7 @@ namespace RubickRage.Core
                         MiliSubTime = (float)0.5
                     });
 
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                     new Models.Camp
                     {
                         TablePos = new Vector3(-4100, 3300, 256),
@@ -68,7 +63,7 @@ namespace RubickRage.Core
             }
             else
             {
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                     new Models.Camp
                     {
                         TablePos = new Vector3(-2498, 4921, 259),
@@ -83,7 +78,7 @@ namespace RubickRage.Core
                         BendPullTime2 = 49,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                     new Models.Camp
                     {
                         TablePos = new Vector3(-4100, 3300, 256),
@@ -98,7 +93,7 @@ namespace RubickRage.Core
                         BendPullTime2 = 2,
                         MiliSubTime = (float)0.5
                     });
-                Core.Config.GetCamps.Add(
+                Config.GetCamps.Add(
                    new Models.Camp
                    {
                        TablePos = new Vector3(5152, -4384, 256),
