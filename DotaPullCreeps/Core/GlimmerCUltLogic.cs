@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Ensage;
-using Ensage.Common.Enums;
 using Ensage.Common.Extensions;
 using Ensage.SDK.Helpers;
 using AbilityId = Ensage.AbilityId;
@@ -9,13 +8,11 @@ namespace SupportsRage.Core
 {
     public static class GlimmerCUltLogic
     {
-        public static Item _Glimmer;
         public static void OnUpdate()
         {
             if (Config._Menu.GlimmerCUlts.ForkeyDown || Config._Menu.GlimmerCUlts.ToggleEnabled)
             {
-                _Glimmer = Config._Hero.GetItemById(ItemId.item_glimmer_cape);
-                if (_Glimmer != null && _Glimmer.CanBeCasted())
+                if (Config._Items.Glimmer != null && Config._Items.Glimmer.CanBeCasted)
                 {
                     foreach (var v in EntityManager<Hero>.Entities.Where(x => x.Team == Config._Hero.Team && x.IsAlive && x.IsVisible))
                     {
@@ -26,18 +23,17 @@ namespace SupportsRage.Core
                             var _AId = anyAbility.Name;
                             if (Config._Menu.GlimmerCUlts.For[_AId])
                             {
-                                if (_Glimmer.CastRange < v.Distance2D(Config._Hero.Position))
+                                if (Config._Items.Glimmer.CastRange < v.Distance2D(Config._Hero.Position))
                                 {
-                                    var _Item2 = Config._Hero.GetItemById(ItemId.item_blink);
-                                    if (_Item2 != null && _Item2.CanBeCasted())
+                                    if (Config._Items.Blink != null && Config._Items.Blink.CanBeCasted)
                                     {
-                                        _Item2.UseAbility(v.Position);
-                                        _Glimmer.UseAbility(v);
+                                        Config._Items.Blink.UseAbility(v.Position);
+                                        Config._Items.Glimmer.UseAbility(v);
                                     }
                                 }
                                 else
                                 {
-                                    _Glimmer.UseAbility(v);
+                                    Config._Items.Glimmer.UseAbility(v);
                                 }
                             }
                         }

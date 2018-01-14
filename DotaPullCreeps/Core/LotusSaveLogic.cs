@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Ensage;
-using Ensage.Common.Enums;
 using Ensage.Common.Extensions;
 using Ensage.SDK.Helpers;
 
@@ -65,10 +64,9 @@ namespace SupportsRage.Core
                                 var _T = _Target.First();
                                 if (Config._Items.Lotus.CastRange < _T.Distance2D(Config._Hero.Position))
                                 {
-                                    var _Item2 = Config._Hero.GetItemById(ItemId.item_blink);
-                                    if (_Item2 != null && _Item2.CanBeCasted())
+                                    if (Config._Items.Blink != null && Config._Items.Blink.CanBeCasted)
                                     {
-                                        _Item2.UseAbility(_T.Position);
+                                        Config._Items.Blink.UseAbility(_T.Position);
                                         Config._Items.Lotus.UseAbility(_T);
                                     }
                                 }

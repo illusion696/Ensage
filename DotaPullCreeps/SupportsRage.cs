@@ -13,7 +13,7 @@ using Config = SupportsRage.Core.Config;
 
 namespace SupportsRage
 {
-    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.4.0", "AIO utility for Supports")]
+    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.4.1", "AIO utility for Supports")]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
