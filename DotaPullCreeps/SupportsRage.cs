@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using Ensage;
 using Ensage.SDK.Helpers;
 using Ensage.SDK.Input;
+using Ensage.SDK.Inventory;
 using Ensage.SDK.Menu;
 using Ensage.SDK.Service;
 using Ensage.SDK.Service.Metadata;
@@ -12,12 +13,13 @@ using Config = SupportsRage.Core.Config;
 
 namespace SupportsRage
 {
-    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.3.0", "AIO utility for Supports")]
+    [ExportPlugin("Supports Rage", StartupMode.Auto, "SirLimon", "1.0.4.0", "AIO utility for Supports")]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
         private readonly IServiceContext _Context;
         private readonly IInputManager _Input;
+        private readonly IInventoryManager _InventoryManager;
 
         [ImportingConstructor]
         public SupportsRage([Import] IServiceContext _Context, [Import] Lazy<MenuManager> _MenuManager)
@@ -27,6 +29,7 @@ namespace SupportsRage
             this._Context = _Context;
             Config._Renderer = _Context.Renderer;
             _Input = _Context.Input;
+            _InventoryManager = _Context.Inventory;
         }
 
         protected override void OnActivate()
@@ -47,6 +50,8 @@ namespace SupportsRage
                 UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
                 UpdateManager.Subscribe(LotusSaveLogic.OnUpdate, 25);
                 UpdateManager.Subscribe(GlimmerCUltLogic.OnUpdate, 25);
+
+                _InventoryManager.Attach(Config._Items);
 
                 Config.Log.Warn("Load completed");
             }
@@ -89,6 +94,7 @@ namespace SupportsRage
             UpdateManager.Unsubscribe(GlimmerSaveLogic.OnUpdate);
             UpdateManager.Unsubscribe(LotusSaveLogic.OnUpdate);
             UpdateManager.Unsubscribe(GlimmerCUltLogic.OnUpdate);
+            _InventoryManager.Detach(Core.Config._Items);
         }
         
     }

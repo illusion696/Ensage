@@ -13,6 +13,7 @@ namespace SupportsRage.Core
         public static Hero _Hero;
         public static Menu _Menu;
         public static IRendererManager _Renderer;
+        public static ItemBindings _Items = new ItemBindings();
         public static Logger Log = LogManager.GetCurrentClassLogger();
 
 
