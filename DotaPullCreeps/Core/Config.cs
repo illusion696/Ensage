@@ -23,5 +23,7 @@ namespace SupportsRage.Core
         public static float _AttackTime = 0;
         public static Boolean DrawConsole = false;
         public static Sleeper _Sleeper = new Sleeper();
+
+        public static String Test;
     }
 }

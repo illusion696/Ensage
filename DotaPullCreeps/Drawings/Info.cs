@@ -3,6 +3,7 @@ using Ensage.Common;
 using SharpDX;
 using SupportsRage.Core;
 using Color = System.Drawing.Color;
+using Ensage;
 
 namespace SupportsRage.Drawings
 {
@@ -28,23 +29,25 @@ namespace SupportsRage.Drawings
             //       "Arial", Drawing.WorldToScreen(Core.Config._Hero.Position), new Vector2(40, 40), Color.Red, FontFlags.Italic);
             //}
 
-            if (Config.DoStack)
+            if (Core.Config.DoStack)
             {
-                if (Config._Menu.Drawings.DrawingsOnTop)
+                if (Core.Config._Menu.Drawings.DrawingsOnTop)
                 {
-                    var _Temp = HUDInfo.GetTopPanelPosition(Config._Hero) + new Vector2(0, 60);
-                    Config._Renderer.DrawRectangle(new RectangleF(_Temp.X, _Temp.Y, (float)HUDInfo.GetTopPanelSizeX(Config._Hero), (float)HUDInfo.GetTopPanelSizeY(Config._Hero)), Color.Green, 2);
+                    var _Temp = HUDInfo.GetTopPanelPosition(Core.Config._Hero) + new Vector2(0, 60);
+                    Core.Config._Renderer.DrawRectangle(new RectangleF(_Temp.X, _Temp.Y, (float)HUDInfo.GetTopPanelSizeX(Core.Config._Hero), (float)HUDInfo.GetTopPanelSizeY(Core.Config._Hero)), Color.Green, 2);
                 }
 
-                if (Config._Menu.Drawings.DrawingsOnHero)
+                if (Core.Config._Menu.Drawings.DrawingsOnHero)
                 {
                     String _Text = "Pulling...";
-                    var _Pos = HUDInfo.GetHPbarPosition(Config._Hero);
-                    var _TextSize = Config._Renderer.MessureText(_Text);
+                    var _Pos = HUDInfo.GetHPbarPosition(Core.Config._Hero);
+                    var _TextSize = Core.Config._Renderer.MessureText(_Text);
                     var _TextPos = _Pos - new Vector2(_TextSize.X + 10, 5);
-                    Config._Renderer.DrawText(_TextPos, _Text, Color.White);
+                    Core.Config._Renderer.DrawText(_TextPos, _Text, Color.White);
                 }
             }
+
+            //Core.Config._Renderer.DrawText(Drawing.WorldToScreen(Core.Config._Hero.Position), "!" + Core.Config.Test, Color.White);
         }
     }
 }
