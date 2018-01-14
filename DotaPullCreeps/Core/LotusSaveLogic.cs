@@ -60,8 +60,8 @@ namespace SupportsRage.Core
                         if (_Target.Any())
                         {
                             var _First = _Target.First();
-                            // Core.Config.Test = _Used.GetCastDelay(_Enemy, _Target.First()) + "\r\n" + String.Join("\r\n", _Target.Select(x => x.Name + " " + _Enemy.FindRelativeAngle(x.Position)));
-                            if (TimeStart + _Used.GetCastDelay(_Enemy, _First) <= Game.GameTime)
+                            //Core.Config.Test = _Used.GetCastDelay(_Enemy, _Target.First()) + "\r\n" + String.Join("\r\n", _Target.Select(x => x.Name + " " + _Enemy.FindRelativeAngle(x.Position)));
+                            if (TimeStart + _Used.GetCastDelay(_Enemy, _First) / 2 <= Game.GameTime)
                             {
                                 _Target = _Target.OrderBy(x => _Enemy.FindRelativeAngle(x.Position)).ToArray();
 
