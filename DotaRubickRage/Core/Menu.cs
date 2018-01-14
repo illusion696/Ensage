@@ -134,6 +134,10 @@ namespace RubickRage.Core
         {
             ToggleEnabled = !ToggleEnabled;
         }
+
+        [Item("Cast timing")]
+        [Tooltip("How match time should left before target will be determined. (more > accuracy but > fails, lower < accuracy but < fails")]
+        public Slider<float> CastTiming { get; set; } = new Slider<float>(20, 15, 40);
     }
 
     public class GlimmerSave
@@ -198,6 +202,10 @@ namespace RubickRage.Core
         {
             ToggleEnabled = !ToggleEnabled;
         }
+
+        [Item("Cast timing")]
+        [Tooltip("How match time should left before target will be determined. (more > accuracy but > fails, lower < accuracy but < fails")]
+        public Slider<float> CastTiming { get; set; } = new Slider<float>(20, 15, 40);
     }
 
     public class LotusCombo
@@ -296,6 +304,10 @@ namespace RubickRage.Core
                 Config._ComboTask.Cancel();
             }
         }
+
+        [Item("Cast timing")]
+        [Tooltip("How match time should left before target will be determined. (more > accuracy but > fails, lower < accuracy but < fails")]
+        public Slider<float> CastTiming { get; set; } = new Slider<float>(20, 15, 40);
     }
 
     public class LotusSpellConfig

@@ -7,16 +7,18 @@ using Ensage.SDK.Helpers;
 using Ensage.SDK.Menu;
 using Ensage.SDK.Input;
 using Ensage.SDK.Handlers;
+using Ensage.SDK.Inventory;
 using RubickRage.Core;
 
 namespace RubickRage
 {
-    [ExportPlugin("Rubic Rage", StartupMode.Auto, "SirLimon", "1.0.0.0", "Rubic smart assembly", 500, HeroId.npc_dota_hero_rubick)]
+    [ExportPlugin("Rubic Rage", StartupMode.Auto, "SirLimon", "1.0.1.0", "Rubic smart assembly", 500, HeroId.npc_dota_hero_rubick)]
     internal class SupportsRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
         private readonly IServiceContext _Context;
         private readonly IInputManager _Input;
+        private readonly IInventoryManager _InventoryManager;
 
         [ImportingConstructor]
         public SupportsRage([Import] IServiceContext _Context, [Import] Lazy<MenuManager> _MenuManager)
@@ -27,6 +29,7 @@ namespace RubickRage
             Core.Config._Renderer = _Context.Renderer;
             _Input = _Context.Input;
             Core.Config._TargetSelector = _Context.TargetSelector;
+            _InventoryManager = _Context.Inventory;
 
             Core.Config._QSpell = _Context.AbilityFactory.GetAbility<Ensage.SDK.Abilities.npc_dota_hero_rubick.rubick_telekinesis>();
             Core.Config._WSpell = _Context.AbilityFactory.GetAbility<Ensage.SDK.Abilities.npc_dota_hero_rubick.rubick_fade_bolt>();
@@ -52,6 +55,8 @@ namespace RubickRage
                 UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
                 Core.Config._ComboTask = new TaskHandler(LotusLogic.OnUpdateTask, true);
                 Core.Config._ComboMainTask = new TaskHandler(ComboLogic.Combo, true);
+
+                _InventoryManager.Attach(Core.Config._Items);
 
                 Core.Config.Log.Warn("Load completed");
             }
@@ -83,6 +88,7 @@ namespace RubickRage
             UpdateManager.Unsubscribe(MainLogic.OnUpdate);
             UpdateManager.Unsubscribe(LinkenSaveLogic.OnUpdate);
             UpdateManager.Unsubscribe(GlimmerSaveLogic.OnUpdate);
+            _InventoryManager.Detach(Core.Config._Items);
         }
 
     }

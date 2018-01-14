@@ -15,6 +15,7 @@ namespace RubickRage.Core
         public static Menu _Menu;
         public static IRendererManager _Renderer;
         public static ITargetSelectorManager _TargetSelector;
+        public static ItemBindings _Items = new ItemBindings();
         public static Logger Log = LogManager.GetCurrentClassLogger();
 
         public static Ensage.SDK.Abilities.BaseAbility _QSpell { get; set; }

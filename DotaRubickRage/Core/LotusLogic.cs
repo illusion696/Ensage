@@ -9,7 +9,6 @@ namespace RubickRage.Core
 {
     public static class LotusLogic
     {
-        public static Item _Linken;
         public static int _Status;
         private static Ability _Abiility;
         private static Hero _Enemy;
@@ -38,28 +37,26 @@ namespace RubickRage.Core
 
                             _Enemy = v;
                             _IntNut = 0;
-                            var _Item = Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_lotus_orb);
 
-                            if (_Item != null && _Item.CanBeCasted())
+                            if (Config._Items.Lotus != null && Config._Items.Lotus.CanBeCasted)
                             {
                                 var _Target = EntityManager<Hero>.Entities.Where(x => x.Team == Config._Hero.Team && x.IsAlive).OrderBy(x => v.FindRelativeAngle(x.Position)).FirstOrDefault();
 
                                 if (_Target != null)
                                 {
-                                    if (_Item.CastRange < _Target.Distance2D(Config._Hero.Position))
+                                    if (Config._Items.Lotus.CastRange < _Target.Distance2D(Config._Hero.Position))
                                     {
-                                        var _Item2 = Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_blink);
-                                        if (_Item2 != null && _Item2.CanBeCasted())
+                                        if (Config._Items.Blink != null && Config._Items.Blink.CanBeCasted)
                                         {
-                                            _Item2.UseAbility(_Target.Position);
-                                            _Item.UseAbility(_Target);
+                                            Config._Items.Blink.UseAbility(_Target.Position);
+                                            Config._Items.Lotus.UseAbility(_Target);
                                             _Status++;
                                             break;
                                         }
                                     }
-                                    else if (_Item.CanBeCasted())
+                                    else if (Config._Items.Lotus.CanBeCasted)
                                     {
-                                        _Item.UseAbility(_Target);
+                                        Config._Items.Lotus.UseAbility(_Target);
                                         _Status++;
                                         break;
                                     }

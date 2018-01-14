@@ -7,46 +7,90 @@ namespace RubickRage.Core
 {
     public static class LinkenSaveLogic
     {
-        public static Item _Linken;
+        private static float TimeStart;
+        private static int Status;
+        private static Ability _Used;
+        private static Hero[] _Target;
+        private static Hero _Enemy;
+
         public static void OnUpdate()
         {
             if (Config._Menu.LinkenSave.SavekeyDown || Config._Menu.LinkenSave.ToggleEnabled)
             {
-                _Linken = Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_sphere);
-                if (_Linken != null && _Linken.CanBeCasted())
+                switch (Status)
                 {
-                    foreach (var v in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsAlive && x.IsVisible))
-                    {
-                        var anyAbility = v.Spellbook.Spells.FirstOrDefault(x => x.IsInAbilityPhase);
-                        if (anyAbility != null)
+                    case 0:
                         {
-                            var _AId = anyAbility.Name;
-                            if (Config._Menu.LinkenSave.SaveFromKeys.Contains(_AId))
+                            if (Config._Items.Linken != null && Config._Items.Linken.CanBeCasted)
                             {
-                                if (Config._Menu.LinkenSave.SaveFrom[_AId])
+                                foreach (var _Hero in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsAlive && x.IsVisible))
                                 {
-                                    var _Target = EntityManager<Hero>.Entities.Where(x => x.Team == Config._Hero.Team && x.IsAlive).OrderBy(x => v.FindRelativeAngle(x.Position)).FirstOrDefault();
-
-                                    if (_Target != null)
+                                    var _AnyAbility = _Hero.Spellbook.Spells.FirstOrDefault(x => x.IsInAbilityPhase);
+                                    if (_AnyAbility != null)
                                     {
-                                        if (_Linken.CastRange < _Target.Distance2D(Config._Hero.Position))
+                                        _Enemy = _Hero;
+                                        var _AId = _AnyAbility.Name;
+                                        _Used = _AnyAbility;
+                                        if (Config._Menu.LinkenSave.SaveFromKeys.Contains(_AId))
                                         {
-                                            var _Item2 = Config._Hero.GetItemById(Ensage.Common.Enums.ItemId.item_blink);
-                                            if (_Item2 != null && _Item2.CanBeCasted())
+                                            if (Config._Menu.LinkenSave.SaveFrom[_AId])
                                             {
-                                                _Item2.UseAbility(_Target.Position);
-                                                _Linken.UseAbility(_Target);
+                                                if (TimeStart + 0.5 <= Game.GameTime)
+                                                {
+                                                    _Target = EntityManager<Hero>
+                                                              .Entities.Where(x => x.Team == Config._Hero.Team && x.IsAlive && x.Distance2D(_Enemy) <= _AnyAbility.CastRange + 300)
+                                                              .ToArray();
+
+                                                    TimeStart = Game.GameTime;
+                                                    Status = 1;
+                                                    break;
+                                                }
                                             }
-                                        }
-                                        else
-                                        {
-                                            _Linken.UseAbility(_Target);
                                         }
                                     }
                                 }
                             }
                         }
-                    }
+                        break;
+                    case 1:
+                        {
+                            if (_Target.Any())
+                            {
+                                var _First = _Target.First();
+                                if (TimeStart + _Used.GetCastDelay(_Enemy, _First, true) / (Config._Menu.LinkenSave.CastTiming.Value / 10f) <= Game.GameTime)
+                                {
+                                    _Target = _Target.OrderBy(x => _Enemy.FindRelativeAngle(x.Position)).ToArray();
+
+                                    var _T = _Target.First();
+                                    if (Config._Items.Linken.CastRange < _T.Distance2D(Config._Hero.Position))
+                                    {
+                                        if (Config._Items.Blink != null && Config._Items.Blink.CanBeCasted)
+                                        {
+                                            Config._Items.Blink.UseAbility(_T.Position);
+                                            Config._Items.Linken.UseAbility(_T);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Config._Items.Linken.UseAbility(_T);
+                                    }
+
+                                    TimeStart = 0;
+                                    Status = 0;
+                                }
+                                else if (TimeStart + 1 <= Game.GameTime)
+                                {
+                                    TimeStart = 0;
+                                    Status = 0;
+                                }
+                            }
+                            else
+                            {
+                                TimeStart = 0;
+                                Status = 0;
+                            }
+                        }
+                        break;
                 }
             }
         }
