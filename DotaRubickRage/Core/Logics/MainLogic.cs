@@ -2,36 +2,42 @@
 using Ensage.Common.Extensions;
 using Ensage.SDK.Helpers;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace RubickRage.Core
+namespace RubickRage.Core.Logics
 {
     public static class MainLogic
     {
-        public static void OnUpdate()
+        public static bool DoStack;
+        private static int Status;
+        private static Models.Camp CampToPull;
+        private static float _AttackTime;
+
+        public static async Task OnUpdateAsync()
         {
             if (Config._Menu.HotkeyDown)
             {
-                Config.DoStack = true;
-                Config.Status = 0;
+                DoStack = true;
+                Status = 0;
                 return;
             }
-            if (Config.DoStack)
+            if (DoStack)
             {
-                switch (Config.Status)
+                switch (Status)
                 {
                     case 0:
                         {
                             var _ClosestCamp = Config.GetCamps.OrderBy(x => Config._Hero.Distance2D(x.TablePos)).First();
-                            Config.CampToPull = _ClosestCamp;
+                            CampToPull = _ClosestCamp;
                             Config._Hero.Move(_ClosestCamp.PreparePos);
-                            Config.Status++;
+                            Status++;
                         }
                         break;
                     case 1:
                         {
-                            if (Config._Hero.Distance2D(Config.CampToPull.PreparePos) <= 25)
+                            if (Config._Hero.Distance2D(CampToPull.PreparePos) <= 25)
                             {
-                                Config.Status++;
+                                Status++;
                             }
                         }
                         break;
@@ -47,54 +53,54 @@ namespace RubickRage.Core
                             {
                                 if (Config._Hero.IsRanged)
                                 {
-                                    var _SecToRun = Config._Hero.Distance2D(Config.CampToPull.RunPos) /
+                                    var _SecToRun = Config._Hero.Distance2D(CampToPull.RunPos) /
                                                     _Target.MovementSpeed;
                                     var _SecToAttack = Config._Hero.AttackBackswing() + Config._Hero.AttackPoint();
 
-                                    var _PullTime = Config.CampToPull.BendPullTime - _SecToRun - _SecToAttack;
-                                    var _PullTime2 = Config.CampToPull.BendPullTime2 - _SecToRun - _SecToAttack;
+                                    var _PullTime = CampToPull.BendPullTime - _SecToRun - _SecToAttack;
+                                    var _PullTime2 = CampToPull.BendPullTime2 - _SecToRun - _SecToAttack;
                                     if (_PullTime < 0) _PullTime = 60 + _PullTime;
                                     if (_PullTime2 < 0) _PullTime2 = 60 + _PullTime2;
 
                                     if ((_Sec >= _PullTime && _Sec <= _PullTime + 1) ||
                                         (_Sec >= _PullTime2 && _Sec <= _PullTime2 + 1))
                                     {
-                                        Config.Status += 2;
+                                        Status += 2;
                                     }
                                 }
                                 else
                                 {
-                                    var _SecToRun = Config._Hero.Distance2D(Config.CampToPull.RunPos) /
+                                    var _SecToRun = Config._Hero.Distance2D(CampToPull.RunPos) /
                                                     _Target.MovementSpeed;
-                                    var _SecToPull = Config._Hero.Distance2D(Config.CampToPull.PullPus) /
+                                    var _SecToPull = Config._Hero.Distance2D(CampToPull.PullPus) /
                                                      Config._Hero.MovementSpeed;
                                     var _SecToAttack = Config._Hero.AttackBackswing() + Config._Hero.AttackPoint();
 
-                                    var _PullTime = Config.CampToPull.BendPullTime - _SecToRun - _SecToAttack -
-                                                    _SecToPull - Config.CampToPull.MiliSubTime;
-                                    var _PullTime2 = Config.CampToPull.BendPullTime2 - _SecToRun - _SecToAttack -
-                                                     _SecToPull - Config.CampToPull.MiliSubTime;
+                                    var _PullTime = CampToPull.BendPullTime - _SecToRun - _SecToAttack -
+                                                    _SecToPull - CampToPull.MiliSubTime;
+                                    var _PullTime2 = CampToPull.BendPullTime2 - _SecToRun - _SecToAttack -
+                                                     _SecToPull - CampToPull.MiliSubTime;
 
                                     if ((_Sec >= _PullTime && _Sec <= _PullTime + 1) ||
                                         (_Sec >= _PullTime2 && _Sec <= _PullTime2 + 1))
                                     {
-                                        Config._Hero.Move(Config.CampToPull.PullPus);
-                                        Config.Status++;
+                                        Config._Hero.Move(CampToPull.PullPus);
+                                        Status++;
                                     }
                                 }
                             }
                             else
                             {
-                                Config.DoStack = true;
-                                Config.Status = 0;
+                                DoStack = true;
+                                Status = 0;
                             }
                         }
                         break;
                     case 3:
                         {
-                            if (Config._Hero.Distance2D(Config.CampToPull.PullPus) <= 25)
+                            if (Config._Hero.Distance2D(CampToPull.PullPus) <= 25)
                             {
-                                Config.Status++;
+                                Status++;
                             }
                         }
                         break;
@@ -108,8 +114,8 @@ namespace RubickRage.Core
                                         FirstOrDefault(x => x.IsValid && x.IsAlive && x.IsSpawned && x.IsNeutral && x.Distance2D(Config._Hero) <= 600);
 
                                     Config._Hero.Attack(_Target);
-                                    Config._Sleeper.Sleep(1000);
-                                    Config.Status = 5;
+                                    await Task.Delay(1000);
+                                    Status = 5;
                                 }
                                 else
                                 {
@@ -120,35 +126,31 @@ namespace RubickRage.Core
 
                                         Config._Hero.Attack(_Target);
                                     }
-                                    if (Config._AttackTime <= 0 && (Config._Hero.IsAttacking()))
+                                    if (_AttackTime <= 0 && (Config._Hero.IsAttacking()))
                                     {
-                                        Config._AttackTime = Game.GameTime + Game.Ping / 1000;
+                                        _AttackTime = Game.GameTime + Game.Ping / 1000;
                                     }
-                                    else if (Config._AttackTime > 0 && Game.GameTime >= Config._AttackTime + Config._Hero.AttackPoint())
+                                    else if (_AttackTime > 0 && Game.GameTime >= _AttackTime + Config._Hero.AttackPoint())
                                     {
-                                        Config._AttackTime = 0;
-                                        Config.Status = 5;
+                                        _AttackTime = 0;
+                                        Status = 5;
                                     }
                                 }
                             }
                             else
                             {
-                                Config._Hero.Move(Config.CampToPull.RunPos);
-                                Config.Status = 0;
-                                Config.DoStack = false;
+                                Config._Hero.Move(CampToPull.RunPos);
+                                Status = 0;
+                                DoStack = false;
                             }
                         }
                         break;
 
                     case 5:
                         {
-                            if (Config._Sleeper.Sleeping)
-                            {
-                                return;
-                            }
-                            Config._Hero.Move(Config.CampToPull.RunPos);
-                            Config.Status = 0;
-                            Config.DoStack = false;
+                            Config._Hero.Move(CampToPull.RunPos);
+                            Status = 0;
+                            DoStack = false;
                         }
                         break;
                 }

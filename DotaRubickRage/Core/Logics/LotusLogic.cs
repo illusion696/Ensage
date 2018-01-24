@@ -1,11 +1,12 @@
 ﻿using Ensage;
 using Ensage.Common.Extensions;
 using Ensage.SDK.Helpers;
+using RubickRage.Models;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RubickRage.Core
+namespace RubickRage.Core.Logics
 {
     public static class LotusLogic
     {
@@ -27,9 +28,12 @@ namespace RubickRage.Core
                             var anyAbility = v.Spellbook.Spells.FirstOrDefault(x => x.IsInAbilityPhase);
                             if (anyAbility != null && Config._Menu.LotusCombo.LotusSpellConfigs.ContainsKey(anyAbility.Name))
                             {
-                                _Used = Config._Menu.LotusCombo.LotusSpellConfigs[anyAbility.Name];
+                                    _Used = Config._Menu.LotusCombo.LotusSpellConfigs[anyAbility.Name];
                             }
-                            else return;
+                            else
+                            {
+                                continue;
+                            }
 
                             if (_Used == null) continue;
                             if (Config._Menu.LotusCombo.SaveFrom[anyAbility.Name] == false) continue;

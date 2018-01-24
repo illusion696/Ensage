@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RubickRage</RootNamespace>
-    <AssemblyName>RubickRage</AssemblyName>
+    <AssemblyName>RubickRageFREE</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -83,22 +83,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AbilityStorage.cs" />
-    <Compile Include="Core\ComboLogic.cs" />
+    <Compile Include="Core\Helpers\HUDHelper.cs" />
     <Compile Include="Core\Config.cs" />
-    <Compile Include="Core\GlimmerCUltLogic.cs" />
-    <Compile Include="Core\GlimmerSaveLogic.cs" />
+    <Compile Include="Core\EnemyUpdater.cs" />
+    <Compile Include="Core\Helpers\DagonManager.cs" />
+    <Compile Include="Core\Helpers\DamageManager.cs" />
+    <Compile Include="Core\Helpers\TargetChecker.cs" />
     <Compile Include="Core\Init.cs" />
     <Compile Include="Core\ItemBindings.cs" />
-    <Compile Include="Core\LinkenSaveLogic.cs" />
-    <Compile Include="Core\LotusLogic.cs" />
-    <Compile Include="Core\MainLogic.cs" />
-    <Compile Include="Core\Menu.cs" />
+    <Compile Include="Core\Logics\ComboLogic.cs" />
+    <Compile Include="Core\Logics\GlimmerCUltLogic.cs" />
+    <Compile Include="Core\Logics\GlimmerSaveLogic.cs" />
+    <Compile Include="Core\Logics\LinkenSaveLogic.cs" />
+    <Compile Include="Core\Logics\StealLogic.cs" />
+    <Compile Include="Core\Logics\LotusLogic.cs" />
+    <Compile Include="Core\Logics\MainLogic.cs" />
+    <Compile Include="Core\Logics\ModWatcherLogic.cs" />
+    <Compile Include="Core\Logics\ParticleRemover.cs" />
+    <Compile Include="Core\Menus\DrawingsMenu.cs" />
+    <Compile Include="Core\Menus\GlimmerCUlts.cs" />
+    <Compile Include="Core\Menus\GlimmerSaveMenu.cs" />
+    <Compile Include="Core\Menus\LinkenSaveMenu.cs" />
+    <Compile Include="Core\Menus\StealMenu.cs" />
+    <Compile Include="Core\Menus\LotusComboMenu.cs" />
+    <Compile Include="Core\Menus\MainComboMenu.cs" />
+    <Compile Include="Core\Menus\MainMenu.cs" />
     <Compile Include="Core\MouseRegionCatch.cs" />
+    <Compile Include="Core\Sleeper.cs" />
+    <Compile Include="Drawings\Hello.cs" />
     <Compile Include="Drawings\Info.cs" />
+    <Compile Include="Drawings\StealConfigPanel.cs" />
     <Compile Include="Drawings\SpellConfigPanel.cs" />
-    <Compile Include="Drawings\TempDrawExt.cs" />
     <Compile Include="Models\CampModel.cs" />
-    <Compile Include="Models\ProtectDataModel.cs" />
+    <Compile Include="Models\LotusSpellConfig.cs" />
+    <Compile Include="Models\ProtectData.cs" />
+    <Compile Include="Models\SpellTypeEnum.cs" />
+    <Compile Include="Models\StealDataModel.cs" />
+    <Compile Include="Models\TimeModel.cs" />
     <Compile Include="RubickRage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Printer.cs" />
@@ -106,7 +127,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\ArrowLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\ArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\Run.png" />
+    <EmbeddedResource Include="Resources\Images\RunRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\IngameLogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
