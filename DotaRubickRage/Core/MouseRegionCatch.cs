@@ -103,7 +103,7 @@ namespace RubickRage.Core
                 Config._Menu.Drawings.StealPanelPosition.Value = _Pos;
             }
 
-            var _DragZone2 = new RectangleF(Config._Menu.Drawings.StealPanelPosition.Value.X, Config._Menu.Drawings.StealPanelPosition.Value.Y, 300, 20);
+            var _DragZone2 = new RectangleF(Config._Menu.Drawings.StealPanelPosition.Value.X, Config._Menu.Drawings.StealPanelPosition.Value.Y, 150, 20);
             _CanDrag2 = _DragZone2.Contains(e.Position);
         }
     }
