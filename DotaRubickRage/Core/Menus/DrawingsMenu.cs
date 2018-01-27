@@ -33,6 +33,6 @@ namespace RubickRage.Core.Menus
         public bool DrawingsStealPanel { get; set; }
 
         [Item("Steal Position")]
-        public Slider<Vector2> StealPanelPosition { get; set; } = new Slider<Vector2>(new Vector2(200, 50), new Vector2(0, 0), new Vector2(Drawing.Width - 10, Drawing.Height - 10));
+        public Slider<Vector2> StealPanelPosition { get; set; } = new Slider<Vector2>(new Vector2(200, 100), new Vector2(0, 0), new Vector2(Drawing.Width - 10, Drawing.Height - 10));
     }
 }

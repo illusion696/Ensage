@@ -12,18 +12,17 @@ namespace RubickRage.Core
     {
         public static void OnUpdate()
         {
-            //foreach (var _Hero in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsIllusion == false))
-            //{
-            //    //npc_dota_hero_
-            //    var _Temp = _Hero.Name.Substring(14);
-            //    if (Drawings.BombStack._Heroes.Contains(_Temp) == false)
-            //    {
-            //        Config._Renderer.TextureManager.LoadFromDota(_Temp, $"resource\\flash3\\images\\heroes\\{_Temp}.png");
-            //        Drawings.BombStack._Heroes.Add(_Temp);
-
-            //        Config._HeroesFullNames.Add(_Hero.Name);
-            //    }
-            //}
+            foreach (var _Hero in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsIllusion == false))
+            {
+                if (Config._HeroesFullNames.Contains(_Hero.Name) == false)
+                {
+                    Core.Config._Menu.GlimmerSave.ReBind();
+                    Core.Config._Menu.LinkenSave.ReBind();
+                    Core.Config._Menu.LotusCombo.ReBind();
+                    Core.Config._Menu.Steal.ReBind();
+                    Config._HeroesFullNames.Add(_Hero.Name);
+                }
+            }
         }
     }
 }

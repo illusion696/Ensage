@@ -8,6 +8,8 @@ namespace RubickRage.Core
 {
     public static class ComboLogic
     {
+        public static int Status;
+
         public static async Task Combo(CancellationToken cancellationToken)
         {
             try

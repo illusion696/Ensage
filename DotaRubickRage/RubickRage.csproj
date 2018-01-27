@@ -110,7 +110,6 @@
     <Compile Include="Core\Menus\MainMenu.cs" />
     <Compile Include="Core\MouseRegionCatch.cs" />
     <Compile Include="Core\Sleeper.cs" />
-    <Compile Include="Drawings\Hello.cs" />
     <Compile Include="Drawings\Info.cs" />
     <Compile Include="Drawings\StealConfigPanel.cs" />
     <Compile Include="Drawings\SpellConfigPanel.cs" />

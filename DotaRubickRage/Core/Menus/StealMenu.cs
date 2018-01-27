@@ -56,6 +56,47 @@ namespace RubickRage.Core.Menus
             Stealkey = new HotkeySelector(Key.L, StealkeyPressed, HotkeyFlags.Down | HotkeyFlags.Up);
         }
 
+        public void ReBind()
+        {
+            SpellConfigs = new Dictionary<string, bool>();
+            List<String> _Names = new List<String>();
+            foreach (var H in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team))
+            {
+                var _S1 = H.Spellbook.SpellQ;
+                var _S2 = H.Spellbook.SpellW;
+                var _S3 = H.Spellbook.SpellE;
+                var _S4 = H.Spellbook.SpellR;
+
+                if (AbilityStorage._AllSkills.Any(x => x.Id == _S1.Id))
+                {
+                    _Names.Add(_S1.Name);
+                    SpellConfigs.Add(_S1.Name, false);
+                    Config._Renderer.TextureManager.LoadFromDota(_S1.Name, $"resource\\flash3\\images\\spellicons\\{_S1.TextureName}.png");
+                }
+                if (AbilityStorage._AllSkills.Any(x => x.Id == _S2.Id))
+                {
+                    _Names.Add(_S2.Name);
+                    SpellConfigs.Add(_S2.Name, false);
+                    Config._Renderer.TextureManager.LoadFromDota(_S2.Name, $"resource\\flash3\\images\\spellicons\\{_S2.TextureName}.png");
+                }
+                if (AbilityStorage._AllSkills.Any(x => x.Id == _S3.Id))
+                {
+                    _Names.Add(_S3.Name);
+                    SpellConfigs.Add(_S3.Name, false);
+                    Config._Renderer.TextureManager.LoadFromDota(_S3.Name, $"resource\\flash3\\images\\spellicons\\{_S3.TextureName}.png");
+                }
+                if (AbilityStorage._AllSkills.Any(x => x.Id == _S4.Id))
+                {
+                    _Names.Add(_S4.Name);
+                    SpellConfigs.Add(_S4.Name, false);
+                    Config._Renderer.TextureManager.LoadFromDota(_S4.Name, $"resource\\flash3\\images\\spellicons\\{_S4.TextureName}.png");
+                }
+            }
+
+            StealKeys = _Names.ToArray();
+            StealSpells = new ImageToggler(true, StealKeys);
+        }
+
         public Dictionary<String, Boolean> SpellConfigs = new Dictionary<string, Boolean>();
 
         [Item("Spells")]

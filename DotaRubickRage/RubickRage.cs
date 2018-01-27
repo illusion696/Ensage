@@ -15,7 +15,7 @@ using RubickRage.Core.Menus;
 
 namespace RubickRage
 {
-    [ExportPlugin("Rubick Rage", StartupMode.Auto, "SirLimon", "1.2.0.0", "Rubick smart assembly", 500, HeroId.npc_dota_hero_rubick)]
+    [ExportPlugin("Rubick Rage", StartupMode.Auto, "SirLimon", "1.2.1.0", "Rubick smart assembly", 500, HeroId.npc_dota_hero_rubick)]
     internal class RubickRage : Plugin
     {
         private readonly Lazy<MenuManager> _MenuManager;
@@ -55,7 +55,6 @@ namespace RubickRage
                 Core.Config._Renderer.Draw += Drawings.Info.OnDraw;
                 Core.Config._Renderer.Draw += Drawings.SpellConfigPanel.OnDraw;
                 Core.Config._Renderer.Draw += Drawings.StealConfigPanel.OnDraw;
-                Core.Config._Renderer.Draw += Drawings.Hello.OnDraw;
 
                 UpdateManager.Subscribe(LinkenSaveLogic.OnUpdate, 25);
                 UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
@@ -97,7 +96,6 @@ namespace RubickRage
             _Input.MouseMove -= MouseRegionCatch.OnMouseMove;
 
             Core.Config._Renderer.Draw -= Drawings.Info.OnDraw;
-            Core.Config._Renderer.Draw -= Drawings.Hello.OnDraw;
             Core.Config._Renderer.Draw -= Drawings.SpellConfigPanel.OnDraw;
             Core.Config._Renderer.Draw -= Drawings.StealConfigPanel.OnDraw;
 
