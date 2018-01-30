@@ -91,6 +91,7 @@
     <Compile Include="Core\Helpers\TargetChecker.cs" />
     <Compile Include="Core\Init.cs" />
     <Compile Include="Core\ItemBindings.cs" />
+    <Compile Include="Core\Logics\CastWatcherLogic.cs" />
     <Compile Include="Core\Logics\ComboLogic.cs" />
     <Compile Include="Core\Logics\GlimmerCUltLogic.cs" />
     <Compile Include="Core\Logics\GlimmerSaveLogic.cs" />

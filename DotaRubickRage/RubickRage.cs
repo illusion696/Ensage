@@ -56,6 +56,7 @@ namespace RubickRage
                 Core.Config._Renderer.Draw += Drawings.SpellConfigPanel.OnDraw;
                 Core.Config._Renderer.Draw += Drawings.StealConfigPanel.OnDraw;
 
+                UpdateManager.Subscribe(Core.Logics.CastWatherLogic.OnUpdate, 25);
                 UpdateManager.Subscribe(LinkenSaveLogic.OnUpdate, 25);
                 UpdateManager.Subscribe(GlimmerSaveLogic.OnUpdate, 25);
                 Core.Config._LotusComboTask = new TaskHandler(Core.Logics.LotusLogic.OnUpdateTask, true);
@@ -99,6 +100,7 @@ namespace RubickRage
             Core.Config._Renderer.Draw -= Drawings.SpellConfigPanel.OnDraw;
             Core.Config._Renderer.Draw -= Drawings.StealConfigPanel.OnDraw;
 
+            UpdateManager.Unsubscribe(Core.Logics.CastWatherLogic.OnUpdate);
             UpdateManager.Unsubscribe(LinkenSaveLogic.OnUpdate);
             UpdateManager.Unsubscribe(GlimmerSaveLogic.OnUpdate);
 

@@ -25,17 +25,25 @@ namespace RubickRage.Core.Logics
                     {
                         foreach (var v in EntityManager<Hero>.Entities.Where(x => x.Team != Config._Hero.Team && x.IsAlive && x.IsVisible))
                         {
-                            var anyAbility = v.Spellbook.Spells.MaxOrDefault(x => x.LastCastClickTime);
-                            if (anyAbility != null && anyAbility.LastCastClickTime > 0 && anyAbility.IsInAbilityPhase == false && Config._Menu.Steal.SpellConfigs.ContainsKey(anyAbility.Name))
+                            var _Abilities = new[] { v.Spellbook.SpellQ, v.Spellbook.SpellW, v.Spellbook.SpellE, v.Spellbook.SpellR };
+                            _Abilities = _Abilities.Where(x => x != null).ToArray();
+
+                            foreach (var A in _Abilities)
                             {
-                                _Abiility = anyAbility;
-                                _Status = 1;
-                                _Enemy = v;
-                                return;
-                            }
-                            else
-                            {
-                                continue;
+                                if (A.IsInAbilityPhase == false && Config._Menu.Steal.SpellConfigs.ContainsKey(A.Name) && Core.Logics.CastWatherLogic.IsLastCasted(v, A.Id))
+                                {
+                                    if (Config._Menu.Steal.SpellConfigs[A.Name])
+                                    {
+                                        _Abiility = A;
+                                        _Status = 1;
+                                        _Enemy = v;
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    continue;
+                                }
                             }
                         }
                     }
